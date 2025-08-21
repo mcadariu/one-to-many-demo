@@ -13,16 +13,18 @@ create table books (
     constraint fk_books_author foreign key (author_id) references authors(id)
 );
 
+create index idx_books_author_id ON books(author_id);
+
 insert into authors (name, bio)
 select
     'Author ' || seq,
     'Bio for author ' || seq
 from generate_series(1, 1000) seq;
 
-INSERT INTO books (author_id, title, isbn, published_year)
-SELECT
-    a.id AS author_id,
-    'Book ' || gs AS title,
-    LPAD((FLOOR(random() * 1e13))::bigint::text, 13, '0') AS isbn,
-    (2000 + FLOOR(random() * 25))::int AS published_year
-FROM authors a, generate_series(1, 30) AS gs;
+insert into books (author_id, title, isbn, published_year)
+select
+    a.id as author_id,
+    'Book ' || gs as title,
+    LPAD((FLOOR(random() * 1e13))::bigint::text, 13, '0') as isbn,
+    (2000 + FLOOR(random() * 25))::int as published_year
+from authors a, generate_series(1, 30) as gs;

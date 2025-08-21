@@ -31,15 +31,16 @@ class DemoApplicationTests {
 
     @Test
     void testNPlusOneEndpoint() throws Exception {
-        MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        while(true) { }
+//        MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
-        long startTime = System.currentTimeMillis();
-        mockMvc.perform(get("/api/authors/n-plus-one"))
-                .andExpect(status().isOk())
-                .andReturn();
-        long endTime = System.currentTimeMillis();
-
-        System.out.println(endTime - startTime);
+//        long startTime = System.currentTimeMillis();
+//        mockMvc.perform(get("/api/authors/n-plus-one"))
+//                .andExpect(status().isOk())
+//                .andReturn();
+//        long endTime = System.currentTimeMillis();
+//
+//        System.out.println(endTime - startTime);
     }
 
     @Test

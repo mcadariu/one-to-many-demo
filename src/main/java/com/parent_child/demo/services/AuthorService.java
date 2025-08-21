@@ -26,11 +26,11 @@ public class AuthorService {
     }
 
     public List<AuthorWithBooksDto> getAllAuthorsWithBooksNplus1() {
-        List<Author> authors = authorRepository.findAll(); // 1 query
+        List<Author> authors = authorRepository.findAll();
 
         return authors.stream()
                 .map(author -> {
-                    List<Book> books = author.getBooks(); // N queries
+                    List<Book> books = author.getBooks();
                     return new AuthorWithBooksDto(
                             author.getId(),
                             author.getName(),
@@ -46,7 +46,7 @@ public class AuthorService {
     }
 
     public List<AuthorWithBooksDto> getAllAuthorsWithBooksJoinFetch() {
-        List<Author> authors = authorRepository.findAllWithBooks(); // Just 1 query now!
+        List<Author> authors = authorRepository.findAllWithBooks();
 
         return authors.stream()
                 .map(author -> new AuthorWithBooksDto(
