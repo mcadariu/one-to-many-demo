@@ -13,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @Transactional(readOnly = true)
@@ -36,11 +37,14 @@ public class AuthorService {
                             author.getName(),
                             author.getBio(),
                             books.stream()
-                                    .map(book -> new BookDto(book.getTitle(), book.getIsbn(), book.getPublishedYear()))
-                                    .collect(Collectors.toList())
+                                    .map(book -> new BookDto(
+                                            book.getTitle(),
+                                            book.getIsbn(),
+                                            book.getPublishedYear()))
+                                    .collect(toList())
                     );
                 })
-                .collect(Collectors.toList());
+                .collect(toList());
 
 
     }
@@ -54,10 +58,13 @@ public class AuthorService {
                         author.getName(),
                         author.getBio(),
                         author.getBooks().stream()
-                                .map(book -> new BookDto(book.getTitle(), book.getIsbn(), book.getPublishedYear()))
-                                .collect(Collectors.toList())
+                                .map(book -> new BookDto(
+                                        book.getTitle(),
+                                        book.getIsbn(),
+                                        book.getPublishedYear()))
+                                .collect(toList())
                 ))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public List<AuthorWithBooksDto> getAllAuthorsWithBooksJson() {
@@ -84,7 +91,7 @@ public class AuthorService {
 
                     return new AuthorWithBooksDto(id, name, bio, books);
                 })
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     private JsonNode parseJsonNode(String json) {

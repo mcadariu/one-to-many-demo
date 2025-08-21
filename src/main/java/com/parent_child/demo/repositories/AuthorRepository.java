@@ -23,12 +23,11 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
                         'title', b.title,
                         'isbn', b.isbn,
                         'publishedYear', b.published_year
-                    ) ORDER BY b.title
+                    )
                 ) AS books
             FROM authors a
             JOIN books b ON b.author_id = a.id
-            GROUP BY a.id, a.name, a.bio
-            ORDER BY a.id;
+            GROUP BY a.id;
         """, nativeQuery = true)
     List<Object[]> findAllWithBooksAsJson();
 }
