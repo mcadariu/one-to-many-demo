@@ -25,6 +25,6 @@ insert into books (author_id, title, isbn, published_year)
 select
     a.id as author_id,
     'Book ' || gs as title,
-    LPAD((FLOOR(random() * 1e13))::bigint::text, 13, '0') as isbn,
+    random()::bigint::text as isbn,
     (2000 + FLOOR(random() * 25))::int as published_year
 from authors a, generate_series(1, 30) as gs;

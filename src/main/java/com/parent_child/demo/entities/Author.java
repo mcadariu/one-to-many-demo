@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -17,7 +18,7 @@ public class Author {
     private String name;
     private String bio;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = ALL, orphanRemoval = true)
     private List<Book> books = new ArrayList<>();
 
     public List<Book> getBooks() {
