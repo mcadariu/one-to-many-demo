@@ -2,6 +2,7 @@ package com.parent_child.demo.entities;
 
 import jakarta.persistence.*;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -17,7 +18,7 @@ public class Book {
     @Column(name = "published_year")
     private Integer publishedYear;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
 

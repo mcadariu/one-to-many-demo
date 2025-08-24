@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -27,9 +28,9 @@ public class AuthorService {
     }
 
     public List<AuthorWithBooksDto> getAllAuthorsWithBooksNplus1() {
-        List<Author> authors = authorRepository.findAll();
-
-        return authors.stream()
+        return authorRepository
+                .findAll()
+                .stream()
                 .map(author -> {
                     List<Book> books = author.getBooks();
                     return new AuthorWithBooksDto(
@@ -45,8 +46,6 @@ public class AuthorService {
                     );
                 })
                 .collect(toList());
-
-
     }
 
     public List<AuthorWithBooksDto> getAllAuthorsWithBooksJoinFetch() {
