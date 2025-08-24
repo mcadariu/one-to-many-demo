@@ -1,1 +1,1 @@
-
+Support repo for [Loading One-to-Many relationships efficiently with Spring Data JPA and Postgres](https://dev.to/mcadariu/loading-one-to-many-relationships-efficiently-with-spring-data-jpa-and-postgres-1ik9)
